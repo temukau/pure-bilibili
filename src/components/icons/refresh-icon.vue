@@ -1,11 +1,11 @@
-<script setup lang="ts">
-
-</script>
+<script setup lang="ts"></script>
 
 <template>
-  <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAARVBMVEUAAAAAruwArusAruwAruwArewAq+sArusAresAr+sAruwAr+8Aru8AruwAruwAr+cArewAr+0AruwArewAr98ArusAruy8BWrbAAAAFnRSTlMA76DfcL9AMJBAgCAQz68gYI9fUBDPY12YwgAAAUZJREFUOMuNlFuShCAMRcNTQEBbp9n/UkcTuhnKKHN/rIqHXBII0MvrrEQpIuXg4VYxHEyTkjOPvcpFHKpFYaQ2OLQb813x+vxx626t1VLVwOvwOj6p2hoMCmebxSSJTNGeHwq+MWQW6LQQahBsvkIzGyfyA67ITcBoohIJnHHfyHFkA3EnmsV8COkLzthZPl1pqgkXFnSNUwDqNiGsDdzAPlQC2pCkBQiUd6xMzmMl7M1AMQKcDfUDLpzFlBFInRb/AKkxaL2PQYH9Xp8wumwJ2+OeMDrkDHrYcDQNYIfVTJUQI2+JnnTYYr7F2n2NOD/3YLuvrjwdt24DEAUO4UMlaqmLRuO69bOhWd++J4Z95GYKv6EppkLoH38vKWZ+2MlUUnvvd+1UDbjLaKrCiHu5FnnlHNoyqOqyBcR42ZCTOBiVtYVOvw1hKHrM5JK6AAAAAElFTkSuQmCC" alt="refresh icon">
+  <img
+    class="icon"
+    src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAMAAAC7IEhfAAAARVBMVEUAAAAAruwArusAruwAruwArewAq+sArusAresAr+sAruwAr+8Aru8AruwAruwAr+cArewAr+0AruwArewAr98ArusAruy8BWrbAAAAFnRSTlMA76DfcL9AMJBAgCAQz68gYI9fUBDPY12YwgAAAUZJREFUOMuNlFuShCAMRcNTQEBbp9n/UkcTuhnKKHN/rIqHXBII0MvrrEQpIuXg4VYxHEyTkjOPvcpFHKpFYaQ2OLQb813x+vxx626t1VLVwOvwOj6p2hoMCmebxSSJTNGeHwq+MWQW6LQQahBsvkIzGyfyA67ITcBoohIJnHHfyHFkA3EnmsV8COkLzthZPl1pqgkXFnSNUwDqNiGsDdzAPlQC2pCkBQiUd6xMzmMl7M1AMQKcDfUDLpzFlBFInRb/AKkxaL2PQYH9Xp8wumwJ2+OeMDrkDHrYcDQNYIfVTJUQI2+JnnTYYr7F2n2NOD/3YLuvrjwdt24DEAUO4UMlaqmLRuO69bOhWd++J4Z95GYKv6EppkLoH38vKWZ+2MlUUnvvd+1UDbjLaKrCiHu5FnnlHNoyqOqyBcR42ZCTOBiVtYVOvw1hKHrM5JK6AAAAAElFTkSuQmCC"
+    alt="refresh icon"
+  />
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>

@@ -1,157 +1,189 @@
-import {defineStore} from "pinia";
-import {Object} from "@/utils/object";
-import {UserApi} from "@/api/modules/user-api";
+import { defineStore } from 'pinia'
+import { ObjectUtil } from '@/utils/object-util'
+import { UserApi } from '@/api/modules/user-api'
+import { PassportApi } from '@/api/modules/passport-api'
+
+// 用户信息
+interface Profile {
+  mid: string
+  name: string
+  sex: '保密' | '男' | '女'
+  face: string
+  sign: string
+  rank: number
+  level: 1 | 2 | 3 | 4 | 5 | 6
+  jointime: number
+  moral: number
+  silence: number
+  email_status: 0 | 1
+  tel_status: 0 | 1
+  identification: number
+  vip: {
+    type: number
+    status: 0 | 1
+    due_date: number
+    vip_pay_type: number
+    theme_type: number
+    label: {
+      path: string
+      text: string
+      label_theme: string
+      text_color: string
+      bg_style: number
+      bg_color: string
+      border_color: string
+      use_img_label: boolean
+      img_label_uri_hans: string
+      img_label_uri_hant: string
+      img_label_uri_hans_static: string
+      img_label_uri_hant_static: string
+    }
+    avatar_subscript: number
+    nickname_color: string
+    role: number
+    avatar_subscript_url: string
+    tv_vip_status: number
+    tv_vip_pay_type: number
+    tv_due_date: number
+  }
+  pendant: {
+    pid: number
+    name: string
+    image: string
+    expire: number
+    image_enhance: string
+    image_enhance_frame: string
+  }
+  nameplate: {
+    nid: number
+    name: string
+    image: string
+    image_small: string
+    level: string
+    condition: string
+  }
+  official: {
+    role: number
+    title: string
+    desc: string
+    type: number
+  }
+  birthday: number
+  is_tourist: number
+  is_fake_account: number
+  pin_prompting: number
+  is_deleted: number
+  in_reg_audit: number
+  is_rip_user: boolean
+  profession: {
+    id: number
+    name: string
+    show_name: string
+    is_show: number
+    category_one: string
+    realname: string
+    title: string
+    department: string
+    certificate_no: string
+    certificate_show: boolean
+  }
+  face_nft: number
+  face_nft_new: number
+  is_senior_member: number
+  honours: {
+    mid: number
+    colour: {
+      dark: string
+      normal: string
+    }
+    tags: any[] | null
+  }
+  digital_id: string
+  digital_type: number
+  attestation: {
+    type: number
+    common_info: {
+      title: string
+      prefix: string
+      prefix_title: string
+    }
+    splice_info: {
+      title: string
+    }
+    icon: string
+    desc: string
+  }
+  expert_info: {
+    title: string
+    state: number
+    type: number
+    desc: string
+  }
+}
+
+// 等级经验
+interface LevelExp {
+  current_level: number
+  current_min: number
+  current_exp: number
+  next_exp: number
+  level_up: number
+}
 
 export const useUserStore = defineStore('user-state', {
-    state: () => ({
-        isLogin: false,
-        profile: {
-            "mid": 554384020,
-            "name": "a14n",
-            "sex": "保密",
-            "face": "https://i1.hdslb.com/bfs/face/865070fb9fb2a276b2cb91fd971ced6f968a9573.jpg",
-            "sign": "",
-            "rank": 10000,
-            "level": 5,
-            "jointime": 0,
-            "moral": 70,
-            "silence": 0,
-            "email_status": 0,
-            "tel_status": 1,
-            "identification": 0,
-            "vip": {
-                "type": 1,
-                "status": 0,
-                "due_date": 1658937600000,
-                "vip_pay_type": 0,
-                "theme_type": 0,
-                "label": {
-                    "path": "",
-                    "text": "",
-                    "label_theme": "",
-                    "text_color": "",
-                    "bg_style": 0,
-                    "bg_color": "",
-                    "border_color": "",
-                    "use_img_label": true,
-                    "img_label_uri_hans": "",
-                    "img_label_uri_hant": "",
-                    "img_label_uri_hans_static": "https://i0.hdslb.com/bfs/vip/d7b702ef65a976b20ed854cbd04cb9e27341bb79.png",
-                    "img_label_uri_hant_static": "https://i0.hdslb.com/bfs/activity-plat/static/20220614/e369244d0b14644f5e1a06431e22a4d5/KJunwh19T5.png"
-                },
-                "avatar_subscript": 0,
-                "nickname_color": "",
-                "role": 0,
-                "avatar_subscript_url": "",
-                "tv_vip_status": 0,
-                "tv_vip_pay_type": 0,
-                "tv_due_date": 0
-            },
-            "pendant": {
-                "pid": 0,
-                "name": "",
-                "image": "",
-                "expire": 0,
-                "image_enhance": "",
-                "image_enhance_frame": ""
-            },
-            "nameplate": {
-                "nid": 0,
-                "name": "",
-                "image": "",
-                "image_small": "",
-                "level": "",
-                "condition": ""
-            },
-            "official": {
-                "role": 0,
-                "title": "",
-                "desc": "",
-                "type": -1
-            },
-            "birthday": 1063728000,
-            "is_tourist": 0,
-            "is_fake_account": 0,
-            "pin_prompting": 0,
-            "is_deleted": 0,
-            "in_reg_audit": 0,
-            "is_rip_user": false,
-            "profession": {
-                "id": 0,
-                "name": "",
-                "show_name": "",
-                "is_show": 0,
-                "category_one": "",
-                "realname": "",
-                "title": "",
-                "department": "",
-                "certificate_no": "",
-                "certificate_show": false
-            },
-            "face_nft": 0,
-            "face_nft_new": 0,
-            "is_senior_member": 0,
-            "honours": {
-                "mid": 554384020,
-                "colour": {
-                    "dark": "#CE8620",
-                    "normal": "#F0900B"
-                },
-                "tags": null
-            },
-            "digital_id": "",
-            "digital_type": -2,
-            "attestation": {
-                "type": 0,
-                "common_info": {
-                    "title": "",
-                    "prefix": "",
-                    "prefix_title": ""
-                },
-                "splice_info": {
-                    "title": ""
-                },
-                "icon": "",
-                "desc": ""
-            },
-            "expert_info": {
-                "title": "",
-                "state": 0,
-                "type": 0,
-                "desc": ""
-            }
-        },
-        "level_exp": {
-            "current_level": 5,
-            "current_min": 10800,
-            "current_exp": 13525,
-            "next_exp": 28800,
-            "level_up": 1675722873
-        },
-        "coins": 734,
-        "following": 2,
-        "follower": 2
-    }),
+  state: () => ({
+    fetching: false,
+    isLogin: false,
+    profile: {} as Profile, // Initialize with an empty object of type Profile
+    level_exp: {} as LevelExp, // Initialize with an empty object of type LevelExp
+    coins: 0,
+    following: 0,
+    follower: 0
+  }),
 
-    actions: {
-        clear() {
-            Object.resetObject(this.profile)
-            this.isLogin = false
-        },
-        fetchProfile() {
-            UserApi.getMyInfo().then(res => {
-                if (res.code === 0) {
-                    this.profile = res.data.profile
-                    this.level_exp = res.data.level_exp
-                    this.coins = res.data.coins
-                    this.following = res.data.following
-                    this.follower = res.data.follower
-                    this.isLogin = true
-                } else {
-                    this.clear()
-                }
-            })
-            console.debug(this.profile)
+  actions: {
+    reset() {
+      this.isLogin = false
+      this.fetching = false
+      this.coins = 0
+      this.following = 0
+      this.follower = 0
+      ObjectUtil.resetObject(this.profile)
+      ObjectUtil.resetObject(this.level_exp)
+      document.cookie = ''
+    },
+
+    async fetchProfile() {
+      this.fetching = true
+      try {
+        const res = await UserApi.getMyInfo()
+        if (res.code === 0) {
+          const { profile, level_exp, coins, following, follower } = res.data
+          this.profile = profile
+          this.level_exp = level_exp
+          this.coins = coins
+          this.following = following
+          this.follower = follower
+          this.isLogin = true
+        } else {
+          this.reset()
         }
+      } catch (error) {
+        this.reset()
+      } finally {
+        this.fetching = false
+      }
+    },
+
+    async logout() {
+      try {
+        const res = await PassportApi.logout()
+        if (res.data.code === 0) {
+          this.reset()
+        }
+      } catch (error) {
+        console.error(error)
+      }
     }
+  }
 })

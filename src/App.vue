@@ -1,33 +1,35 @@
 <script setup lang="ts">
-import {RouterView} from 'vue-router'
-import NavHeader from "@/components/layout/nav-header.vue";
-import SideBar from "@/components/layout/side-bar.vue";
-import LoginModal from "@/components/modal/login-modal.vue";
-import TabBar from "@/components/layout/tab-bar.vue";
-import {onMounted} from "vue";
-import {useUserStore} from "@/stores/user";
+import { RouterView } from 'vue-router'
+import NavHeader from '@/components/layout/nav-header.vue'
+import SideBar from '@/components/layout/side-bar.vue'
+import LoginModal from '@/components/modal/login-modal.vue'
+import TabBar from '@/components/layout/tab-bar.vue'
+import { onMounted } from 'vue'
+import { useUserStore } from '@/stores/user'
+import RefreshBtn from "@/components/button/refresh-btn.vue";
 
 onMounted(() => {
-  useUserStore().fetchProfile();
+  useUserStore().fetchProfile()
 })
 </script>
 
 <template>
-  <header class="header">
-    <nav-header/>
+  <header id="header" class="header">
+    <nav-header />
   </header>
   <aside class="aside">
-    <side-bar/>
+    <side-bar />
   </aside>
-  <main class="main">
-    <router-view/>
+  <main id="main" class="main">
+    <router-view />
   </main>
-  <footer class="footer">
-    <tab-bar/>
+  <footer id="footer" class="footer">
+    <tab-bar />
   </footer>
   <div class="dialogs">
     <login-modal></login-modal>
   </div>
+  <refresh-btn id="global-refresh-btn"/>
 </template>
 
 <style scoped>
@@ -37,7 +39,7 @@ onMounted(() => {
   width: 100%;
   height: var(--nav-height);
   z-index: var(--nav-z-index);
-  background-color: rgba(255, 255,255, .7);
+  background-color: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(16%);
 }
 .aside {
@@ -53,17 +55,23 @@ onMounted(() => {
   left: var(--side-width);
   width: calc(100% - var(--side-width));
   height: calc(100% - var(--nav-height));
-  padding: var(--padding-large);
+  padding: var(--padd-xg);
   top: var(--nav-height);
   overflow: auto;
 }
 .footer {
   width: 100%;
-  height: var(--tab-height);
+  height: var(--tab-bar-height);
   z-index: var(--tab-z-index);
   position: fixed;
   bottom: 0;
   display: none;
+}
+
+.refresh-btn {
+  position: fixed;
+  right: 40px;
+  bottom: 40px;
 }
 
 @media screen and (max-width: 768px) {
@@ -73,14 +81,15 @@ onMounted(() => {
   .main {
     left: 0;
     width: 100%;
-    height: calc(100% - var(--nav-height) - var(--tab-height));
-    padding: var(--padding-normal);
+    height: calc(100% - var(--nav-height) - var(--tab-bar-height));
+    padding: var(--padd-normal);
   }
-}
-
-@media screen and (max-width: 768px) {
   .footer {
     display: block;
+  }
+  .refresh-btn {
+    right: 10px;
+    bottom: calc(var(--tab-height) + var(--padd-xg) * 2);
   }
 }
 </style>

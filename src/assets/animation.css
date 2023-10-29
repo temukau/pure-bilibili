@@ -1,0 +1,24 @@
+/* vue transition fade 动画 */
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease-out;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  transform: scale(1.2);
+  opacity: 0;
+}
+
+/* 按钮悬浮动画 */
+@keyframes btn-hover {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

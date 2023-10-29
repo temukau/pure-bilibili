@@ -1,27 +1,27 @@
 <script setup lang="ts">
-import BiliLogo from "@/components/icons/bili-logo.vue";
-import {useUserStore} from "@/stores/user";
-import SearchIcon from "@/components/icons/search-icon.vue";
-import {useModalStore} from "@/stores/modal";
-import {ref, watch} from "vue";
-import NavHeaderPopup from "@/components/layout/nav-header-popup.vue";
-import router from "@/router";
+import BiliLogo from '@/components/icons/bili-logo.vue'
+import { useUserStore } from '@/stores/user'
+import SearchIcon from '@/components/icons/search-icon.vue'
+import { useModalStore } from '@/stores/modal'
+import { ref, watch } from 'vue'
+import NavHeaderPopup from '@/components/layout/nav-header-popup.vue'
+import router from '@/router'
 
 const state = ref({
   searchInputText: '',
   isSearchInputFocused: false,
   showPopup: false
-});
+})
 
-const userStore = useUserStore();
-const modalStore = useModalStore();
+const userStore = useUserStore()
+const modalStore = useModalStore()
 
 const switchInputFocused = (isFocused: boolean) => {
-  state.value.isSearchInputFocused = isFocused;
+  state.value.isSearchInputFocused = isFocused
 }
 
 const togglePopup = () => {
-  state.value.showPopup = !state.value.showPopup;
+  state.value.showPopup = !state.value.showPopup
 }
 
 const goToMySpace = async () => {
@@ -34,33 +34,53 @@ const goToMySpace = async () => {
 <template>
   <div class="nav-header">
     <div class="logo-box">
-      <bili-logo/>
+      <bili-logo />
     </div>
     <div class="right-box">
-      <div class="search-box"
-           :class="{ 'active' : state.isSearchInputFocused, 'inactive': !state.isSearchInputFocused }">
-        <input @focus="switchInputFocused(true)"
-               @blur="switchInputFocused(false)"
-               v-model="state.searchInputText" type="text" placeholder="搜索"/>
-        <SearchIcon class="search-icon"/>
+      <div
+        class="search-box"
+        :class="{ active: state.isSearchInputFocused, inactive: !state.isSearchInputFocused }"
+      >
+        <input
+          @focus="switchInputFocused(true)"
+          @blur="switchInputFocused(false)"
+          v-model="state.searchInputText"
+          type="text"
+          placeholder="搜索"
+        />
+        <SearchIcon class="search-icon" />
       </div>
-      <div v-if="userStore.isLogin" class="login-info">
-        <img @mouseover="togglePopup"
-             @click="goToMySpace"
-             referrerpolicy="no-referrer"
-             :src="userStore.profile.face" alt="my avatar" class="avatar">
+      <div v-if="userStore.isLogin && !userStore.fetching" class="login-info">
+        <img
+          @mouseover="togglePopup"
+          @click="goToMySpace"
+          referrerpolicy="no-referrer"
+          :src="userStore.profile.face"
+          alt="my avatar"
+          class="avatar"
+        />
       </div>
       <div v-else class="login-info">
-        <button @click="modalStore.toggleLoginModal()" class="btn login-btn">登录</button>
+        <button
+          v-show="!userStore.fetching"
+          @click="modalStore.toggleLoginModal()"
+          class="btn login-btn"
+        >
+          登录
+        </button>
       </div>
     </div>
-    <nav-header-popup @mouseleave="togglePopup" v-if="state.showPopup"/>
+    <nav-header-popup
+      class="popup"
+      @mouseleave="togglePopup"
+      v-if="state.showPopup && userStore.isLogin"
+    />
   </div>
 </template>
 
 <style scoped>
 .nav-header {
-  transition: .3s ease-in-out;
+  transition: 0.3s ease-in-out;
   top: 0;
   display: flex;
   justify-content: space-between;
@@ -70,19 +90,19 @@ const goToMySpace = async () => {
   height: 65px;
   position: relative;
   padding: 20px;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-normal);
 }
 
 .right-box {
   display: flex;
   align-items: center;
-  gap: var(--padding-large);
+  gap: var(--padd-xg);
 }
 
 .search-box {
   box-sizing: border-box;
   width: 200px;
-  padding: var(--padding-sm) var(--padding-normal);
+  padding: var(--padd-sm) var(--padd-normal);
   border: 1px solid var(--color-border);
   background-color: var(--bg-color-gray);
   display: flex;
@@ -92,11 +112,11 @@ const goToMySpace = async () => {
 }
 
 .search-box.active {
-  animation: search-box-animation .3s ease-in-out forwards;
+  animation: search-box-animation 0.3s ease-in-out forwards;
 }
 
 .search-box.inactive {
-  animation: search-box-inactive-animation .3s ease-in-out forwards;
+  animation: search-box-inactive-animation 0.3s ease-in-out forwards;
 }
 
 .search-box input {
@@ -151,7 +171,11 @@ const goToMySpace = async () => {
   }
 
   .btn {
-    padding: var(--padding-sm) var(--padding-normal);
+    padding: var(--padd-sm) var(--padd-normal);
+  }
+
+  .popup {
+    display: none;
   }
 }
 

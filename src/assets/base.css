@@ -1,8 +1,17 @@
 * {
-    padding: 0;
-    margin: 0;
+  padding: 0;
+  margin: 0;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
+}
+
+select,
+button,
+textarea,
+input,
+option {
+  outline: none;
+  border: none;
 }

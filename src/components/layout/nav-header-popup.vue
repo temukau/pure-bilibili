@@ -1,17 +1,26 @@
 <script setup lang="ts">
-import {useUserStore} from "@/stores/user";
+import { useUserStore } from '@/stores/user'
 
-const userStore = useUserStore();
+const userStore = useUserStore()
+
+const logout = () => {
+  userStore.logout()
+}
 </script>
 
 <template>
   <div class="nav-header-popup bg-white">
     <div class="user-profile">
-      <img referrerpolicy="no-referrer" :src="userStore.profile.face" alt="my avatar" class="avatar">
+      <img
+        referrerpolicy="no-referrer"
+        :src="userStore.profile.face"
+        alt="my avatar"
+        class="avatar"
+      />
       <p class="user-name">{{ userStore.profile.name }}</p>
     </div>
     <div class="menus">
-      <button class="btn text-btn menu-item">退出登录</button>
+      <button @click="logout" class="btn text-btn menu-item">退出登录</button>
     </div>
   </div>
 </template>
@@ -21,9 +30,9 @@ const userStore = useUserStore();
   min-width: 300px;
   border-radius: var(--radius-normal);
   box-sizing: border-box;
-  padding: var(--padding-large);
+  padding: var(--padd-xg);
   position: absolute;
-  top: calc(var(--nav-height) + var(--padding-sm));
+  top: calc(var(--nav-height) + var(--padd-sm));
   right: 10px;
   display: flex;
   flex-direction: column;
@@ -38,12 +47,12 @@ const userStore = useUserStore();
 }
 
 .user-name {
-  padding: var(--padding-medium);
+  padding: var(--padd-lg);
 }
 
 .menu-item {
   display: block;
-  padding: var(--padding-medium);
+  padding: var(--padd-lg);
   width: 100%;
 }
 </style>
