@@ -1,6 +1,6 @@
 # pure-bilibili
 
-This template should help get you started developing with Vue 3 in Vite.
+第三方哔哩哔哩网站 Vue实现
 
 ## Recommended IDE Setup
 
