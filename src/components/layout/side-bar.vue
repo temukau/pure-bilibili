@@ -7,13 +7,22 @@ import TabMineIcon from '@/components/icons/tab-mine-icon.vue'
 <template>
   <div class="side-bar">
     <router-link class="side-bar-nav-item" to="/" active-class="active">
-      <tab-home-icon class="icon" :selected="$route.name?.toString().startsWith('Home')"></tab-home-icon>
+      <tab-home-icon
+        class="icon"
+        :selected="$route.name?.toString().startsWith('Home')"
+      ></tab-home-icon>
     </router-link>
     <router-link class="side-bar-nav-item" to="/dynamic" active-class="active">
-      <tab-feed-icon class="icon" :selected="$route.name?.toString().startsWith('Dynamic')"></tab-feed-icon>
+      <tab-feed-icon
+        class="icon"
+        :selected="$route.name?.toString().startsWith('Dynamic')"
+      ></tab-feed-icon>
     </router-link>
     <router-link class="side-bar-nav-item" to="/space" active-class="active">
-      <tab-mine-icon class="icon" :selected="$route.name?.toString().startsWith('Space')"></tab-mine-icon>
+      <tab-mine-icon
+        class="icon"
+        :selected="$route.name?.toString().startsWith('Space')"
+      ></tab-mine-icon>
     </router-link>
   </div>
 </template>
@@ -39,7 +48,8 @@ import TabMineIcon from '@/components/icons/tab-mine-icon.vue'
   text-align: center;
 }
 
-.side-bar-nav-item.active svg, .side-bar-nav-item.active svg path {
+.side-bar-nav-item.active svg,
+.side-bar-nav-item.active svg path {
   fill: var(--color-primary);
 }
 

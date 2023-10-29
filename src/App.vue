@@ -6,7 +6,7 @@ import LoginModal from '@/components/modal/login-modal.vue'
 import TabBar from '@/components/layout/tab-bar.vue'
 import { onMounted } from 'vue'
 import { useUserStore } from '@/stores/user'
-import RefreshBtn from "@/components/button/refresh-btn.vue";
+import RefreshBtn from '@/components/button/refresh-btn.vue'
 
 onMounted(() => {
   useUserStore().fetchProfile()
@@ -29,7 +29,7 @@ onMounted(() => {
   <div class="dialogs">
     <login-modal></login-modal>
   </div>
-  <refresh-btn id="global-refresh-btn"/>
+  <refresh-btn id="global-refresh-btn" />
 </template>
 
 <style scoped>

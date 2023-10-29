@@ -12,9 +12,13 @@ defineProps({
 </script>
 
 <template>
-  <router-link class="tab-item" :to="to" active-class="active"
-               :class="{ primary: tabStyle === 'primary', normal: tabStyle === 'normal' }">
-    <slot/>
+  <router-link
+    class="tab-item"
+    :to="to"
+    active-class="active"
+    :class="{ primary: tabStyle === 'primary', normal: tabStyle === 'normal' }"
+  >
+    <slot />
   </router-link>
 </template>
 

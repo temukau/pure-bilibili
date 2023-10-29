@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import TabLinkItem from "@/components/tab/tab-item.vue";
-import TabList from "@/components/tab/tab-list.vue";
+import TabLinkItem from '@/components/tab/tab-item.vue'
+import TabList from '@/components/tab/tab-list.vue'
 </script>
 
 <template>
@@ -11,7 +11,7 @@ import TabList from "@/components/tab/tab-list.vue";
     </tab-list>
 
     <div class="container">
-      <router-view/>
+      <router-view />
     </div>
   </div>
 </template>

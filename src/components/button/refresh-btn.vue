@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import RefreshIcon from "@/components/icons/refresh-icon.vue";
+import RefreshIcon from '@/components/icons/refresh-icon.vue'
 </script>
 
 <template>
   <div class="refresh-btn">
-    <refresh-icon/>
+    <refresh-icon />
   </div>
 </template>
 
@@ -20,7 +20,7 @@ import RefreshIcon from "@/components/icons/refresh-icon.vue";
   border-radius: var(--radius-circle);
 }
 .refresh-btn.active {
-  animation: refresh-animation .3s ease-in-out;
+  animation: refresh-animation 0.3s ease-in-out;
 }
 .refresh-btn .icon {
   width: 32px;

@@ -7,13 +7,22 @@ import TabFeedIcon from '@/components/icons/tab-feed-icon.vue'
 <template>
   <div class="tab-bar bg-white">
     <router-link class="side-bar-nav-item" to="/" active-class="active">
-      <tab-home-icon class="icon" :selected="$route.name?.toString().startsWith('Home')"></tab-home-icon>
+      <tab-home-icon
+        class="icon"
+        :selected="$route.name?.toString().startsWith('Home')"
+      ></tab-home-icon>
     </router-link>
     <router-link class="side-bar-nav-item" to="/dynamic" active-class="active">
-      <tab-feed-icon class="icon" :selected="$route.name?.toString().startsWith('Dynamic')"></tab-feed-icon>
+      <tab-feed-icon
+        class="icon"
+        :selected="$route.name?.toString().startsWith('Dynamic')"
+      ></tab-feed-icon>
     </router-link>
     <router-link class="side-bar-nav-item" to="/space" active-class="active">
-      <tab-mine-icon class="icon" :selected="$route.name?.toString().startsWith('Space')"></tab-mine-icon>
+      <tab-mine-icon
+        class="icon"
+        :selected="$route.name?.toString().startsWith('Space')"
+      ></tab-mine-icon>
     </router-link>
   </div>
 </template>

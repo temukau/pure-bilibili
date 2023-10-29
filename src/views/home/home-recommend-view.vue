@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import {onMounted, ref} from 'vue'
-import {PopularApi} from '@/api/modules/popular-api'
+import { onMounted, ref } from 'vue'
+import { PopularApi } from '@/api/modules/popular-api'
 import VideoCardItem from '@/components/video/video-card-item.vue'
 import VideoGrid from '@/components/video/video-grid.vue'
-import {useMainReachBottom} from '@/hooks/useMainReachBottom'
+import { useMainReachBottom } from '@/hooks/useMainReachBottom'
 import LoadingStatus from '@/components/feedback/loading-status.vue'
-import {useGlobalRefresh} from "@/hooks/useGlobalRefresh";
+import { useGlobalRefresh } from '@/hooks/useGlobalRefresh'
 
 const list = ref([])
 const size = ref(20)
