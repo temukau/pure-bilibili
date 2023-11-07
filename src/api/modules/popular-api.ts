@@ -20,24 +20,24 @@ export const PopularApi = {
 
   /**
    * 获取入站必刷列表
-   * @param pageNumber 页码
+   * @param page 页码
    * @param pageSize 每页大小
    */
-  async getPreciousList(pageNumber: number, pageSize: number) {
+  async getPreciousList(page: number, pageSize: number) {
     return await BaseApi.get('/x/web-interface/popular/precious', {
-      page: pageNumber,
+      page: page,
       page_size: pageSize
     })
   },
 
   /**
    * 获取综合热门列表
-   * @param pageNumber 页码
+   * @param page 页码
    * @param pageSize 每页大小
    */
-  async getHostList(pageNumber: number, pageSize: number) {
+  async getHostList(page: number, pageSize: number) {
     return await BaseApi.get('/x/web-interface/popular', {
-      pn: pageNumber,
+      pn: page,
       ps: pageSize
     })
   },
@@ -50,9 +50,9 @@ export const PopularApi = {
   async getRecommendList(lastIndex: number, size: number) {
     return await BaseApi.get('/x/web-interface/wbi/index/top/feed/rcmd', {
       ps: size,
-      fresh_idx: lastIndex,
-      fresh_type: 3,
-      fetch_row: 1
+      fresh_idx: lastIndex
+      // fresh_type: 3,
+      // fetch_row: 1
     })
   }
 }

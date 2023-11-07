@@ -17,10 +17,12 @@ export function useGlobalRefresh(func: () => void) {
   const throttledFunc = throttle(refreshBtnClickEvent, 300)
 
   onMounted(() => {
+    globalRefreshBtn.style.display = 'block'
     globalRefreshBtn.addEventListener('click', throttledFunc)
   })
 
   onUnmounted(() => {
+    globalRefreshBtn.style.display = 'none'
     globalRefreshBtn.removeEventListener('click', throttledFunc)
   })
 }

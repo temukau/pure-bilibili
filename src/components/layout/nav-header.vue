@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import BiliLogo from '@/components/icons/bili-logo.vue'
 import { useUserStore } from '@/stores/user'
-import SearchIcon from '@/components/icons/search-icon.vue'
+import SearchIcon from '@/components/icons/icon-search.vue'
 import { useModalStore } from '@/stores/modal'
 import { ref, watch } from 'vue'
 import NavHeaderPopup from '@/components/layout/nav-header-popup.vue'
@@ -26,7 +26,7 @@ const togglePopup = () => {
 
 const goToMySpace = async () => {
   await router.push({
-    name: 'space'
+    name: 'Space'
   })
 }
 </script>

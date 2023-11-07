@@ -22,7 +22,7 @@ export const PassportApi = {
   },
 
   /**
-   * 获取登录二维码状态
+   * 获取登录二维码扫描状态
    * @param qrCodeKey 二维码key
    */
   async getScanQRCodeStatus(qrCodeKey: string) {

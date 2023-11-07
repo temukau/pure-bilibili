@@ -31,7 +31,7 @@ const getRecommendList = async () => {
   const res = await PopularApi.getRecommendList(last.value, size.value).finally(() => {
     loading.value = false
   })
-  list.value = list.value.concat(res.data.item)
+  list.value = list.value.concat(res.data.item.filter((item: any) => item.goto !== 'login_card'))
   last.value = last.value + res.data.item.length
 }
 </script>

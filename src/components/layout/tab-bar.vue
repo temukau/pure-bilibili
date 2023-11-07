@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import TabHomeIcon from '@/components/icons/tab-home-icon.vue'
-import TabMineIcon from '@/components/icons/tab-mine-icon.vue'
-import TabFeedIcon from '@/components/icons/tab-feed-icon.vue'
+import TabHomeIcon from '@/components/icons/icon-tab-home.vue'
+import TabMineIcon from '@/components/icons/icon-tab-mine.vue'
+import TabFeedIcon from '@/components/icons/icon-tab-dynamic.vue'
 </script>
 
 <template>

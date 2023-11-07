@@ -1,4 +1,5 @@
 import { defineStore } from 'pinia'
+import { useRouter } from 'vue-router'
 
 export const useModalStore = defineStore('modal-state', {
   state: () => ({
@@ -25,6 +26,14 @@ export const useModalStore = defineStore('modal-state', {
   actions: {
     toggleLoginModal() {
       this.modals.loginModal = !this.modals.loginModal
+    },
+
+    openLoginModal() {
+      this.modals.loginModal = true
+    },
+
+    closeLoginModal() {
+      this.modals.loginModal = false
     }
   }
 })

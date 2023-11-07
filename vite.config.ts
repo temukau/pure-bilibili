@@ -1,6 +1,6 @@
 import {fileURLToPath, URL} from 'node:url'
 
-import {defineConfig, loadEnv} from 'vite'
+import {defineConfig, HttpProxy, loadEnv} from 'vite'
 import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
@@ -21,20 +21,26 @@ export default defineConfig(({mode}) => {
                 '/api': {
                     target: env.VITE_PROXY_URL,
                     changeOrigin: true,
+                    secure: true,
                     rewrite: (path) => path.replace(/^\/api/, ''),
-                    configure: (proxy, options) => {
-                        proxy.on('proxyReq', (proxyReq, req, res) => {
-                            proxyReq.setHeader('Referer', "https://www.bilibili.com/")
-                        })
-                    }
+                    configure: configureProxy
                 },
                 '/passport': {
-                    target: "https://passport.bilibili.com",
+                    target: env.VITE_PROXY_PASSPORT_URL,
                     changeOrigin: true,
+                    secure: true,
                     rewrite: (path) => path.replace(/^\/passport/, ''),
-                    configure: (proxy, options) => {
+                    configure: configureProxy
+                },
+                '/vc': {
+                    target: env.VITE_PROXY_API_VC_URL,
+                    changeOrigin: true,
+                    secure: true,
+                    rewrite: (path) => path.replace(/^\/vc/, ''),
+                    configure: (proxy) => {
                         proxy.on('proxyReq', (proxyReq, req, res) => {
-                            proxyReq.setHeader('Referer', "https://www.bilibili.com/")
+                            proxyReq.setHeader("Origin", "https://t.bilibili.com")
+                            proxyReq.setHeader('Referer', "https://t.bilibili.com/")
                         })
                     }
                 }
@@ -42,3 +48,9 @@ export default defineConfig(({mode}) => {
         }
     }
 });
+
+function configureProxy(proxy: HttpProxy.Server) {
+    proxy.on('proxyReq', (proxyReq, req, res) => {
+        proxyReq.setHeader('Referer', "https://www.bilibili.com/")
+    })
+}

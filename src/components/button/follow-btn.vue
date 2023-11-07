@@ -5,7 +5,7 @@ defineProps({
     required: true
   },
   isFollowed: {
-    type: Number,
+    type: [Boolean, Number],
     default: 0
   }
 })

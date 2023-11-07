@@ -45,6 +45,10 @@ a {
   animation: btn-hover 0.5s ease-in-out;
 }
 
+.btn.default {
+  background-color: var(--color-link);
+}
+
 .text-btn {
   color: var(--color-primary);
   background-color: transparent;

@@ -3,10 +3,11 @@ import { useModalStore } from '@/stores/modal'
 import { onMounted, ref, watch } from 'vue'
 import { PassportApi } from '@/api/modules/passport-api'
 import qrcode from 'qrcode'
-import CloseIcon from '@/components/icons/close-icon.vue'
+import CloseIcon from '@/components/icons/icon-close.vue'
 import { useUserStore } from '@/stores/user'
 import ErrCode from '@/config/err-code'
-import RefreshIcon from '@/components/icons/refresh-icon.vue'
+import RefreshIcon from '@/components/icons/icon-refresh.vue'
+import cookies from 'js-cookie'
 
 const userStore = useUserStore()
 const modalStore = useModalStore()
@@ -38,7 +39,7 @@ const cleanTimer = () => {
 watch(
   () => modalStore.loginModalVisible,
   (val) => {
-    if (!val && qrCodeCheckTimer.value) {
+    if (!val) {
       cleanTimer()
     } else {
       qrCodeCheckTimer.value = window.setInterval(checkQrCodeStatus, 1000)
@@ -92,11 +93,15 @@ const refreshQrCode = () => {
 }
 
 const saveCookie = (url: string) => {
-  const cookies = url.split('?')[1]
-  const cookieList = cookies.split('&')
+  const cookieStr = url.split('?')[1]
+  const cookieList = cookieStr.split('&')
   for (let i = 0; i < cookieList.length; i++) {
     const cookie = cookieList[i].split('=')
-    document.cookie = cookie[0] + '=' + cookie[1]
+    const key = cookie[0]
+    const value = cookie[1]
+    cookies.set(key, value, {
+      path: '/'
+    })
   }
 }
 </script>
@@ -104,7 +109,7 @@ const saveCookie = (url: string) => {
 <template>
   <teleport to="body">
     <transition name="fade">
-      <div v-show="modalStore.loginModalVisible" ref="loginModalRef" class="login-modal-mask">
+      <div v-if="modalStore.loginModalVisible" ref="loginModalRef" class="login-modal-mask">
         <div class="login-modal bg-white">
           <div class="login-modal-close-btn" @click="modalStore.toggleLoginModal()">
             <close-icon />
@@ -131,10 +136,11 @@ const saveCookie = (url: string) => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(162, 167, 175, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
+  backdrop-filter: blur(30px);
 }
 
 .login-modal {

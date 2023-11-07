@@ -1,40 +1,61 @@
 <script setup lang="ts">
-import FollowBtn from "@/components/button/follow-btn.vue";
+import DynamicItemHeader from '@/components/dynamic/dynamic-item-header.vue'
+import DynamicItemImgList from '@/components/dynamic/dynamic-item-img-list.vue'
+import DynamicItemArchive from '@/components/dynamic/dynamic-item-archive.vue'
+import DynamicItemLive from '@/components/dynamic/dynamic-item-live.vue'
+import DynamicItemFooter from '@/components/dynamic/dynamic-item-footer.vue'
+import DynamicItemDesc from '@/components/dynamic/dynamic-item-desc.vue'
+import DynamicItemUgc from "@/components/dynamic/dynamic-item-ugc.vue";
+import DynamicItemArticle from "@/components/dynamic/dynamic-item-article.vue";
 
-defineProps(["item"]);
+const props = defineProps(['item'])
+const emits = defineEmits(['like', 'forward', 'comment'])
+
+function like() {
+  emits('like', props.item)
+}
+
+function forward() {
+  emits('forward', props.item)
+}
+
+function comment() {
+  emits('comment', props.item)
+}
 </script>
 
 <template>
-  <div class="dynamic-item bg-white">
-    <div class="dynamic-item-header">
-      <div class="author">
-        <div class="author-avatar-box">
-          <img referrerpolicy="no-referrer" :src="item.modules.module_author.face" alt="user avatar" class="avatar">
-        </div>
-        <div class="author-info">
-          <p class="author-name">{{ item.modules.module_author.name }}</p>
-          <p class="time">{{ item.modules.module_author.pub_time }}</p>
-        </div>
-      </div>
-      <follow-btn :mid="item.modules.module_author.mid" :is-followed="item.modules.module_author.following"/>
-    </div>
+  <div class="dynamic-item">
+    <dynamic-item-header :author="item.modules.module_author" />
     <div class="dynamic">
-      <span v-for="(node, index) in item.modules.module_dynamic.desc.rich_text_nodes" :key="index">
-        <a v-if="node.jump_url" :href="node.jump_url">{{ node.text }}</a>
-        <span v-else>{{ node.text }}</span>
-      </span>
-      <div class="dynamic-major">
-        <div class="dynamic-major-img-list">
-          <img v-for="(img, index) in item.modules.module_dynamic.major.draw.items"
-               referrerpolicy="no-referrer"
-               :key="index"
-               :width="img.width"
-               :height="img.height"
-               alt="img"
-               :src="img.src"/>
-        </div>
+      <dynamic-item-desc
+        v-if="item.modules.module_dynamic.desc != null"
+        :item="item.modules.module_dynamic.desc"
+      />
+      <dynamic-item-ugc v-if="item.modules.module_dynamic.additional" :item="item.modules.module_dynamic.additional.ugc"></dynamic-item-ugc>
+      <div class="dynamic-major" v-if="item.modules.module_dynamic.major">
+        <dynamic-item-archive :archive="item.modules.module_dynamic.major.archive" />
+        <dynamic-item-img-list
+          v-if="item.modules.module_dynamic.major.draw"
+          :items="item.modules.module_dynamic.major.draw.items"
+        />
+        <dynamic-item-live
+          :live="item.modules.module_dynamic.major.live"
+          v-if="item.modules.module_dynamic.major.live"
+        />
+        <dynamic-item-article :item="item.modules.module_dynamic.major.article"/>
+      </div>
+      <div class="dynamic-origin" v-if="item.orig">
+        <dynamic-item :item="item.orig" />
       </div>
     </div>
+    <dynamic-item-footer
+      v-if="item.modules.module_stat"
+      :stat="item.modules.module_stat"
+      @comment="comment"
+      @forward="forward"
+      @like="like"
+    />
   </div>
 </template>
 
@@ -42,62 +63,33 @@ defineProps(["item"]);
 .dynamic-item {
   border-radius: var(--radius-normal);
   padding: var(--padd-normal);
-}
-
-.dynamic-item-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.author {
-  display: flex;
-}
-
-.author-info {
-  margin-left: var(--padd-normal);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.author-name {
-  font-weight: 600;
-}
-
-.time {
-  color: var(--text-color-secondary)
-}
-
-.dynamic {
-  margin-top: var(--padd-normal);
+  cursor: pointer;
+  background-color: #fff;
 }
 
 .dynamic-major {
   margin-top: var(--padd-normal);
 }
 
-.dynamic-major-img-list {
-  max-width: 500px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: var(--padd-normal)
+.dynamic-origin .dynamic-item {
+  margin-top: 10px;
+  opacity: 0.8;
+  background-color: #f6f7f8;
+  padding: var(--padd-lg);
 }
-.dynamic-major-img-list img {
-  flex: 1;
-  object-fit: cover;
-  max-width: 210px;
-  max-height: 280px;
-  border: 1px solid var(--color-border)
+:deep(.dynamic-origin .dynamic-item) {
+  padding: var(--padd-normal) var(--padd-lg);
 }
-
-@media screen and (max-height: 768px) {
-  .dynamic-major-img-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .dynamic-major-img-list img {
-    max-width: 100%;
-    max-height: 280px;
-  }
+:deep(.dynamic-origin .dynamic-item .avatar) {
+  width: 30px;
+  height: 30px;
+}
+:deep(.dynamic-origin .dynamic-item .dynamic-item-header .author-info) {
+  flex-direction: row;
+  align-items: center;
+  color: var(--text-color-secondary);
+}
+:deep(.dynamic-origin .dynamic-item .dynamic-item-header .author-info .author-name) {
+  font-weight: normal;
 }
 </style>

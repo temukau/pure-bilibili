@@ -39,8 +39,7 @@ onMounted(() => {
   width: 100%;
   height: var(--nav-height);
   z-index: var(--nav-z-index);
-  background-color: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(16%);
+  background-color: #fff;
 }
 .aside {
   position: fixed;
@@ -68,10 +67,12 @@ onMounted(() => {
   display: none;
 }
 
-.refresh-btn {
+#global-refresh-btn {
   position: fixed;
   right: 40px;
   bottom: 40px;
+  display: none;
+  border-radius: var(--radius-circle);
 }
 
 @media screen and (max-width: 768px) {
@@ -87,7 +88,7 @@ onMounted(() => {
   .footer {
     display: block;
   }
-  .refresh-btn {
+  #global-refresh-btn {
     right: 10px;
     bottom: calc(var(--tab-height) + var(--padd-xg) * 2);
   }
