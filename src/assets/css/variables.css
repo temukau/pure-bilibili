@@ -34,11 +34,11 @@
   --radius-normal: 8px;
   --radius-circle: 50%;
 
-  /* padding */
-  --padd-sm: 5px;
-  --padd-normal: 10px;
-  --padd-lg: 20px;
-  --padd-xg: 25px;
+  /* spacing */
+  --spacing-sm: 5px;
+  --spacing-normal: 10px;
+  --spacing-lg: 20px;
+  --spacing-xg: 25px;
 
   /* z-index */
   --nav-z-index: 100;

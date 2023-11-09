@@ -16,7 +16,7 @@ import RefreshIcon from '@/components/icons/icon-refresh.vue'
   align-items: center;
   justify-content: center;
   background-color: var(--bg-color-white);
-  padding: var(--padd-lg);
+  padding: var(--spacing-lg);
   border-radius: var(--radius-circle);
 }
 .refresh-btn.active .icon {
@@ -29,7 +29,7 @@ import RefreshIcon from '@/components/icons/icon-refresh.vue'
 
 @media screen and (max-width: 768px) {
   .refresh-btn {
-    padding: var(--padd-normal);
+    padding: var(--spacing-normal);
   }
   .refresh-btn .icon {
     width: 25px;

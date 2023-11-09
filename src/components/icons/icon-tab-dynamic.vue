@@ -9,7 +9,6 @@ defineProps({
     v-if="!selected"
     class="icon"
     viewBox="0 0 1024 1024"
-    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     width="64"
     height="64"
@@ -31,7 +30,6 @@ defineProps({
     v-else
     class="icon"
     viewBox="0 0 1024 1024"
-    version="1.1"
     xmlns="http://www.w3.org/2000/svg"
     width="64"
     height="64"

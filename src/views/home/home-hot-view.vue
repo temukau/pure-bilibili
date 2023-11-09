@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import { PopularApi } from '@/api/modules/popular-api'
+import {onMounted, ref} from 'vue'
+import {PopularApi} from '@/api/modules/popular-api'
 import VideoCardItem from '@/components/video/video-card-item.vue'
 import VideoGrid from '@/components/video/video-grid.vue'
 import LoadingStatus from '@/components/feedback/loading-status.vue'
-import { useMainReachBottom } from '@/hooks/useMainReachBottom'
-import { useGlobalRefresh } from '@/hooks/useGlobalRefresh'
+import {useMainReachBottom} from '@/hooks/useMainReachBottom'
+import {useGlobalRefresh} from '@/hooks/useGlobalRefresh'
 
 const tabActive = ref(0)
 const loading = ref(false)
@@ -53,7 +53,7 @@ async function getHotList() {
 </script>
 
 <template>
-  <video-grid v-if="tabActive === 0">
+  <video-grid v-if="tabActive === 0" class="video-grid">
     <video-card-item v-for="(item, index) in hotListState.list" :item="item" :key="index" />
   </video-grid>
 
@@ -62,6 +62,6 @@ async function getHotList() {
 
 <style scoped>
 .video-grid {
-  margin-top: var(--padd-normal);
+  margin-top: var(--spacing-normal);
 }
 </style>

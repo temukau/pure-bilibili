@@ -10,6 +10,6 @@
 .tab {
   display: flex;
   height: var(--tab-height);
-  gap: var(--padd-lg);
+  gap: var(--spacing-lg);
 }
 </style>

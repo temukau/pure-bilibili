@@ -1,15 +1,15 @@
-import { defineStore } from 'pinia'
-import { ObjectUtil } from '@/utils/object-util'
-import { UserApi } from '@/api/modules/user-api'
-import { PassportApi } from '@/api/modules/passport-api'
-import type { LevelExp, Profile } from '@/type/user'
+import {defineStore} from 'pinia'
+import {ObjectUtil} from '@/utils/object-util'
+import {UserApi} from '@/api/modules/user-api'
+import {PassportApi} from '@/api/modules/passport-api'
+import type {BiliLevelExp, BiliMyInfo} from '@/type/myinfo'
 
 export const useUserStore = defineStore('user-state', {
   state: () => ({
     fetching: false,
     isLogin: false,
-    profile: {} as Profile, // Initialize with an empty object of type Profile
-    level_exp: {} as LevelExp, // Initialize with an empty object of type LevelExp
+    profile: {} as BiliMyInfo, // Initialize with an empty object of type Profile
+    level_exp: {} as BiliLevelExp, // Initialize with an empty object of type LevelExp
     coins: 0,
     following: 0,
     follower: 0

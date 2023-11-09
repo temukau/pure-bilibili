@@ -11,7 +11,6 @@ defineProps({
   <svg
     v-if="!selected"
     xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 18 18"
     width="18"
     height="18"
@@ -25,7 +24,6 @@ defineProps({
   <svg
     v-if="selected"
     xmlns="http://www.w3.org/2000/svg"
-    xmlns:xlink="http://www.w3.org/1999/xlink"
     viewBox="0 0 18 18"
     width="18"
     height="18"

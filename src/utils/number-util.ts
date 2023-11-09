@@ -5,7 +5,7 @@ export const NumberUtil = {
    * @return {string} 10000 => 1万
    * @example 10000 => 1万
    */
-  numToChinese(num: number): string {
+  numToChinese(num: number): string | null {
     if (!num) {
       return null
     }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useUserStore } from '@/stores/user'
+import {useUserStore} from '@/stores/user'
 
 const userStore = useUserStore()
 
@@ -30,9 +30,9 @@ const logout = () => {
   min-width: 300px;
   border-radius: var(--radius-normal);
   box-sizing: border-box;
-  padding: var(--padd-xg);
+  padding: var(--spacing-xg);
   position: absolute;
-  top: calc(var(--nav-height) + var(--padd-sm));
+  top: calc(var(--nav-height) + var(--spacing-sm));
   right: 10px;
   display: flex;
   flex-direction: column;
@@ -47,12 +47,12 @@ const logout = () => {
 }
 
 .user-name {
-  padding: var(--padd-lg);
+  padding: var(--spacing-lg);
 }
 
 .menu-item {
   display: block;
-  padding: var(--padd-lg);
+  padding: var(--spacing-lg);
   width: 100%;
 }
 </style>

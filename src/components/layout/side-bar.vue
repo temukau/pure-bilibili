@@ -35,7 +35,7 @@ import TabMineIcon from '@/components/icons/icon-tab-mine.vue'
   width: var(--side-width);
   height: 100%;
   background-color: var(--bg-color-white);
-  padding: var(--padd-xg);
+  padding: var(--spacing-xg);
   box-sizing: border-box;
 }
 

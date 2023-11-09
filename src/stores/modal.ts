@@ -1,5 +1,4 @@
-import { defineStore } from 'pinia'
-import { useRouter } from 'vue-router'
+import {defineStore} from 'pinia'
 
 export const useModalStore = defineStore('modal-state', {
   state: () => ({

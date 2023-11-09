@@ -1,12 +1,36 @@
 <script setup lang="ts">
-import { TimeUtil } from '@/utils/time-util'
+import {TimeUtil} from '@/utils/time-util'
 import FollowBtn from '@/components/button/follow-btn.vue'
+import type {PropType} from 'vue'
 
-defineProps(['item'])
+const props = defineProps({
+  item: {
+    type: Object as PropType<any>,
+    required: true
+  },
+  showFollowBtn: {
+    type: Boolean,
+    default: true
+  }
+})
+
+const emits = defineEmits(['click-item', 'follow', 'unfollow'])
+
+const follow = (mid: number) => {
+  emits('follow', mid)
+}
+
+const unfollow = (mid: number) => {
+  emits('unfollow', mid)
+}
+
+const clickItem = () => {
+  emits('click-item', props.item)
+}
 </script>
 
 <template>
-  <div class="item">
+  <div class="item" @click="clickItem">
     <div class="item-header">
       <div class="item-owner-info">
         <img referrerpolicy="no-referrer" :src="item.owner.face" alt="" class="avatar" />
@@ -14,7 +38,13 @@ defineProps(['item'])
           {{ TimeUtil.timeStampToAgo(item.pubdate) }} · {{ item.owner.name }}
         </p>
       </div>
-      <follow-btn :mid="item.owner.mid" :is-followed="item.is_followed" />
+      <follow-btn
+          v-if="showFollowBtn"
+          :is-followed="item.is_followed"
+          :mid="item.owner.mid"
+          @follow="follow"
+          @unfollow="unfollow"
+      />
     </div>
     <div class="item-cover-box">
       <img referrerpolicy="no-referrer" :src="item.pic" alt="" class="item-cover-img" />
@@ -44,14 +74,14 @@ defineProps(['item'])
 }
 
 .item-info {
-  padding: var(--padd-normal);
+  padding: var(--spacing-normal);
 }
 
 .item-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: var(--padd-normal);
+  padding: var(--spacing-normal);
 }
 
 .item-owner-info {
@@ -62,7 +92,7 @@ defineProps(['item'])
 }
 
 .item-owner-name {
-  width: calc(100% - 40px - var(--padd-normal));
+  width: calc(100% - 40px - var(--spacing-normal));
   font-size: var(--font-size-sm);
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -103,6 +133,7 @@ defineProps(['item'])
   box-sizing: border-box;
   transition: 0.15s;
 }
+
 .item:hover .item-cover-video-info {
   background-color: rgba(0, 0, 0, 0.3);
 }

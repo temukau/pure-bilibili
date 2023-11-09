@@ -1,6 +1,6 @@
 import axios from 'axios'
 import ErrCode from '@/config/err-code'
-import { useModalStore } from '@/stores/modal'
+import {useModalStore} from '@/stores/modal'
 
 type BiliResponse<T> = {
   code: number
@@ -14,13 +14,13 @@ const axiosInstance = axios.create({
   withCredentials: true
 })
 
-const get = async <T>(url: string, params?: any): Promise<BiliResponse<any>> => {
-  const response = await axiosInstance.get<BiliResponse<T>>(url, { params })
+const get = async <T>(url: string, params?: any, config?: any): Promise<BiliResponse<any>> => {
+    const response = await axiosInstance.get<BiliResponse<T>>(url, {...config, params})
   return response.data
 }
 
-const post = async <T>(url: string, data?: any): Promise<BiliResponse<any>> => {
-  const response = await axiosInstance.post<BiliResponse<T>>(url, data)
+const post = async <T>(url: string, data?: any, config?: any): Promise<BiliResponse<any>> => {
+    const response = await axiosInstance.post<BiliResponse<T>>(url, data, config)
   return response.data
 }
 

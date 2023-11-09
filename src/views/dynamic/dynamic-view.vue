@@ -1,12 +1,13 @@
 <script setup lang="ts">
-import {onMounted, ref, watch} from 'vue'
+import {computed, onMounted, ref, watch} from 'vue'
 import {DynamicApi} from '@/api/modules/dynamic-api'
 import UnLogin from '@/components/feedback/un-login.vue'
 import DynamicUpList from '@/components/dynamic/dynamic-up-list.vue'
-import DynamicItem from '@/components/dynamic/dynamic-item.vue'
 import {useGlobalRefresh} from '@/hooks/useGlobalRefresh'
 import {useMainReachBottom} from '@/hooks/useMainReachBottom'
 import LoadingStatus from '@/components/feedback/loading-status.vue'
+import VideoGrid from '@/components/video/video-grid.vue'
+import VideoCardItem from '@/components/video/video-card-item.vue'
 
 const portal = ref<{
   upList: any[]
@@ -20,7 +21,6 @@ const portal = ref<{
 
 const dynamicState = ref({
   list: [],
-  page: 1,
   offset: null,
   selectedUpIndex: -1,
   hasMore: true,
@@ -29,35 +29,40 @@ const dynamicState = ref({
 
 onMounted(() => {
   getPortal()
-  getDynamicList()
+  getVideoList()
 })
 
 watch(
     () => dynamicState.value.selectedUpIndex,
     (value, oldValue) => {
       if (value === oldValue) return
+      if (value > -1) {
       portal.value.upList[value].has_update = false
-      resetParams();
-      getDynamicList()
+      }
+      resetDynamicState()
+      getVideoList()
     }
 )
 
+const mid = computed(() => {
+  return portal.value.upList[dynamicState.value.selectedUpIndex]?.mid
+})
+
 useMainReachBottom(() => {
   if (!dynamicState.value.hasMore) return
-  dynamicState.value.page++
-  getDynamicList()
+  getVideoList()
 })
 
 useGlobalRefresh(() => {
-  resetParams();
-  getDynamicList()
+  resetDynamicState()
+  getVideoList()
 })
 
-function resetParams() {
-  dynamicState.value.page = 1
+function resetDynamicState() {
   dynamicState.value.list = []
   dynamicState.value.offset = null
   dynamicState.value.hasMore = true
+  dynamicState.value.loading = true
 }
 
 async function getPortal() {
@@ -67,29 +72,11 @@ async function getPortal() {
   portal.value.myInfo = res.data.my_info
 }
 
-async function getDynamicList() {
-  dynamicState.value.loading = true
-  const page = dynamicState.value.page
-  const mid =
-      dynamicState.value.selectedUpIndex === -1
-          ? 0
-          : portal.value.upList[dynamicState.value.selectedUpIndex].mid
-  const offset = dynamicState.value.offset
-  const res = await DynamicApi.getFollowedDynamicList('all', page, mid, offset).finally(() => {
-    dynamicState.value.loading = false
-  })
+async function getVideoList() {
+  const res = await DynamicApi.getVideoDynamicList(dynamicState.value.offset, mid.value)
   dynamicState.value.list = dynamicState.value.list.concat(res.data.items)
-  dynamicState.value.offset = res.data.offset
   dynamicState.value.hasMore = res.data.has_more
-}
-
-function toggleLike(item: any) {
-  const idStr = item.id_str
-  const likeStatus = item.modules.module_stat.like.status ? 2 : 1
-  DynamicApi.toggleLike(idStr, likeStatus).then(() => {
-    item.modules.module_stat.like.status = !item.modules.module_stat.like.status
-    item.modules.module_stat.like.count += likeStatus === 1 ? 1 : -1
-  })
+  dynamicState.value.offset = res.data.offset
 }
 </script>
 
@@ -97,31 +84,24 @@ function toggleLike(item: any) {
   <div class="container">
     <un-login>
       <dynamic-up-list
-          v-model:selected-index="dynamicState.selectedUpIndex"
           :list="portal.upList"
+          v-model:selected-index="dynamicState.selectedUpIndex"
       />
-      <div class="dynamic-list">
-        <dynamic-item
+      <video-grid class="dynamic-video-grid">
+        <video-card-item
             v-for="(item, index) in dynamicState.list"
             :item="item"
             :key="index"
-            @like="toggleLike"
+            :show-follow-btn="false"
         />
-      </div>
+      </video-grid>
       <loading-status :loading="dynamicState.loading"/>
     </un-login>
   </div>
 </template>
 
 <style scoped>
-.dynamic-followed-up-list {
-  margin: var(--padd-normal) 0;
-}
-
-.dynamic-list {
-  margin-top: var(--padd-normal);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+.dynamic-video-grid {
+  margin-top: var(--spacing-normal);
 }
 </style>

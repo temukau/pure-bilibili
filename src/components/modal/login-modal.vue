@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { useModalStore } from '@/stores/modal'
-import { onMounted, ref, watch } from 'vue'
-import { PassportApi } from '@/api/modules/passport-api'
+import {useModalStore} from '@/stores/modal'
+import {onMounted, ref, watch} from 'vue'
+import {PassportApi} from '@/api/modules/passport-api'
 import qrcode from 'qrcode'
 import CloseIcon from '@/components/icons/icon-close.vue'
-import { useUserStore } from '@/stores/user'
+import {useUserStore} from '@/stores/user'
 import ErrCode from '@/config/err-code'
 import RefreshIcon from '@/components/icons/icon-refresh.vue'
 import cookies from 'js-cookie'
@@ -146,7 +146,7 @@ const saveCookie = (url: string) => {
 .login-modal {
   position: relative;
   border-radius: var(--radius-normal);
-  padding: calc(var(--padd-xg) * 2);
+  padding: calc(var(--spacing-xg) * 2);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -176,7 +176,7 @@ const saveCookie = (url: string) => {
   display: none;
   position: absolute;
   cursor: pointer;
-  padding: var(--padd-normal);
+  padding: var(--spacing-normal);
   border-radius: var(--radius-circle);
   background-color: var(--bg-color-white);
 }

@@ -1,5 +1,5 @@
 // 基本信息
-interface Profile {
+export type BiliMyInfo = {
   mid: string
   name: string
   sex: '保密' | '男' | '女'
@@ -117,12 +117,10 @@ interface Profile {
 }
 
 // 等级经验
-interface LevelExp {
+export interface BiliLevelExp {
   current_level: number
   current_min: number
   current_exp: number
   next_exp: number
   level_up: number
 }
-
-export { Profile, LevelExp }

@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import BiliLogo from '@/components/icons/bili-logo.vue'
-import { useUserStore } from '@/stores/user'
+import {useUserStore} from '@/stores/user'
 import SearchIcon from '@/components/icons/icon-search.vue'
-import { useModalStore } from '@/stores/modal'
-import { ref, watch } from 'vue'
+import {useModalStore} from '@/stores/modal'
+import {ref} from 'vue'
 import NavHeaderPopup from '@/components/layout/nav-header-popup.vue'
 import router from '@/router'
 
@@ -96,13 +96,13 @@ const goToMySpace = async () => {
 .right-box {
   display: flex;
   align-items: center;
-  gap: var(--padd-xg);
+  gap: var(--spacing-xg);
 }
 
 .search-box {
   box-sizing: border-box;
   width: 200px;
-  padding: var(--padd-sm) var(--padd-normal);
+  padding: var(--spacing-sm) var(--spacing-normal);
   border: 1px solid var(--color-border);
   background-color: var(--bg-color-gray);
   display: flex;
@@ -171,7 +171,7 @@ const goToMySpace = async () => {
   }
 
   .btn {
-    padding: var(--padd-sm) var(--padd-normal);
+    padding: var(--spacing-sm) var(--spacing-normal);
   }
 
   .popup {

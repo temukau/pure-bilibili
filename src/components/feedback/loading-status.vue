@@ -20,7 +20,7 @@ defineProps({
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: var(--padd-xg) 0;
+  padding: var(--spacing-xg) 0;
 }
 
 .loading-msg {

@@ -1,8 +1,8 @@
-import './assets/main.css'
+import '@/assets/css/main.css'
 
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import piniaPluginPresidedState from 'pinia-plugin-persistedstate'
-import { createPinia } from 'pinia'
+import {createPinia} from 'pinia'
 
 import App from './App.vue'
 import router from './router'

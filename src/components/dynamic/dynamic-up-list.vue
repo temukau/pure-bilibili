@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { PropType } from 'vue'
-import { nextTick, ref, watch } from 'vue'
+import type {PropType} from 'vue'
+import {nextTick, ref, watch} from 'vue'
 import ArrowRightIcon from '@/components/icons/icon-arrow-right.vue'
 import ArrowLeftIcon from '@/components/icons/icon-arrow-left.vue'
 
@@ -135,14 +135,14 @@ function clickItem(index: number) {
   border-radius: var(--radius-normal);
   display: flex;
   align-items: center;
-  padding: var(--padd-normal);
+  padding: var(--spacing-normal);
 }
 
 .list {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
-  gap: var(--padd-lg);
+  gap: var(--spacing-lg);
   overflow-x: auto;
 }
 
@@ -160,7 +160,7 @@ function clickItem(index: number) {
   justify-content: center;
   background-color: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(20px);
-  padding: 0 var(--padd-normal);
+  padding: 0 var(--spacing-normal);
   z-index: 1;
 }
 
@@ -173,6 +173,10 @@ function clickItem(index: number) {
   user-select: none;
   box-sizing: border-box;
   gap: 5px;
+}
+
+.item .up-name {
+  color: var(--text-color-secondary);
 }
 .item.active .avatar-box {
   border-color: var(--color-primary);

@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router'
+import {RouterView} from 'vue-router'
 import NavHeader from '@/components/layout/nav-header.vue'
 import SideBar from '@/components/layout/side-bar.vue'
 import LoginModal from '@/components/modal/login-modal.vue'
 import TabBar from '@/components/layout/tab-bar.vue'
-import { onMounted } from 'vue'
-import { useUserStore } from '@/stores/user'
+import {onMounted} from 'vue'
+import {useUserStore} from '@/stores/user'
 import RefreshBtn from '@/components/button/refresh-btn.vue'
 
 onMounted(() => {
@@ -54,7 +54,7 @@ onMounted(() => {
   left: var(--side-width);
   width: calc(100% - var(--side-width));
   height: calc(100% - var(--nav-height));
-  padding: var(--padd-xg);
+  padding: var(--spacing-xg);
   top: var(--nav-height);
   overflow: auto;
 }
@@ -83,14 +83,14 @@ onMounted(() => {
     left: 0;
     width: 100%;
     height: calc(100% - var(--nav-height) - var(--tab-bar-height));
-    padding: var(--padd-normal);
+    padding: var(--spacing-normal);
   }
   .footer {
     display: block;
   }
   #global-refresh-btn {
     right: 10px;
-    bottom: calc(var(--tab-height) + var(--padd-xg) * 2);
+    bottom: calc(var(--tab-height) + var(--spacing-xg) * 2);
   }
 }
 </style>

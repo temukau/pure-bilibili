@@ -1,7 +1,7 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import { HomeChildrenRouters } from '@/router/home-child'
-import { useUserStore } from '@/stores/user'
-import { useModalStore } from '@/stores/modal'
+import {createRouter, createWebHistory} from 'vue-router'
+import {HomeChildrenRouters} from '@/router/home-child'
+import {useUserStore} from '@/stores/user'
+import {useModalStore} from '@/stores/modal'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -23,7 +23,7 @@ const router = createRouter({
       component: () => import('@/views/dynamic/dynamic-view.vue')
     },
     {
-      path: '/space/:id?',
+      path: '/space/:uid?',
       name: 'Space',
       meta: {
         title: '个人空间',

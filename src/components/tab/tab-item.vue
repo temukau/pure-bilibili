@@ -25,7 +25,7 @@ defineProps({
 <style scoped>
 .tab-item {
   box-sizing: border-box;
-  padding: 0 var(--padd-lg);
+  padding: 0 var(--spacing-lg);
   display: flex;
   align-items: center;
   justify-content: center;

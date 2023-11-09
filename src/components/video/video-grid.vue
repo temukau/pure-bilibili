@@ -1,15 +1,4 @@
-<script setup lang="ts">
-defineProps({
-  loading: {
-    type: Boolean,
-    default: false
-  },
-  noMore: {
-    type: Boolean,
-    default: false
-  }
-})
-</script>
+<script lang="ts" setup></script>
 
 <template>
   <div class="video-grid">
@@ -24,7 +13,7 @@ defineProps({
   overflow-y: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: var(--padd-lg);
+  gap: var(--spacing-lg);
   justify-content: space-between;
 }
 

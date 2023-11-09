@@ -1,7 +1,10 @@
 <script setup lang="ts">
-defineProps({
+import {UserApi} from '@/api/modules/user-api'
+import {ref} from 'vue'
+
+const props = defineProps({
   mid: {
-    type: Number,
+    type: [Number, String],
     required: true
   },
   isFollowed: {
@@ -10,12 +13,26 @@ defineProps({
   }
 })
 
-defineEmits(['follow', 'unfollow'])
+const state = ref({
+  isFollowed: props.isFollowed
+})
+
+function follow() {
+  UserApi.follow(props.mid).then(() => {
+    state.value.isFollowed = true
+  })
+}
+
+function unfollow() {
+  UserApi.unfollow(props.mid).then(() => {
+    state.value.isFollowed = false
+  })
+}
 </script>
 
 <template>
-  <div v-if="isFollowed" class="follow-btn btn active">已关注</div>
-  <div v-else class="follow-btn btn">关注</div>
+  <div v-if="state.isFollowed" class="follow-btn btn active" @click="unfollow">已关注</div>
+  <div v-else class="follow-btn btn" @click="follow">关注</div>
 </template>
 
 <style scoped>

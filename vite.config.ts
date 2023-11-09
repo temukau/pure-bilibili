@@ -38,7 +38,7 @@ export default defineConfig(({mode}) => {
                     secure: true,
                     rewrite: (path) => path.replace(/^\/vc/, ''),
                     configure: (proxy) => {
-                        proxy.on('proxyReq', (proxyReq, req, res) => {
+                        proxy.on('proxyReq', (proxyReq) => {
                             proxyReq.setHeader("Origin", "https://t.bilibili.com")
                             proxyReq.setHeader('Referer', "https://t.bilibili.com/")
                         })
@@ -50,7 +50,7 @@ export default defineConfig(({mode}) => {
 });
 
 function configureProxy(proxy: HttpProxy.Server) {
-    proxy.on('proxyReq', (proxyReq, req, res) => {
+    proxy.on('proxyReq', (proxyReq) => {
         proxyReq.setHeader('Referer', "https://www.bilibili.com/")
     })
 }

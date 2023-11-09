@@ -1,4 +1,4 @@
-import { BaseApi } from '@/api/base'
+import {BaseApi} from '@/api/base'
 import cookies from 'js-cookie'
 import axios from 'axios'
 
@@ -34,6 +34,18 @@ export const DynamicApi = {
         .catch((err) => {
           reject(err)
         })
+    })
+  },
+
+  /**
+   * 获取视频动态列表
+   * @param offset 偏移量
+   * @param mid up主id
+   */
+  async getVideoDynamicList(offset?: number | string | null, mid?: number | string) {
+    return BaseApi.get(`/x/polymer/web-dynamic/desktop/v1/feed/video`, {
+      offset,
+      host_mid: mid
     })
   },
 

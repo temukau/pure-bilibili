@@ -22,6 +22,6 @@ import TabList from '@/components/tab/tab-list.vue'
 }
 
 .container {
-  margin-top: var(--padd-normal);
+  margin-top: var(--spacing-normal);
 }
 </style>

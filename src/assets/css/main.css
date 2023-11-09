@@ -1,7 +1,7 @@
-@import './base.css';
-@import './variables.css';
-@import './animation.css';
-@import 'font.css';
+@import '@/assets/css/base.css';
+@import '@/assets/css/variables.css';
+@import '@/assets/css/animation.css';
+@import '@/assets/css/font.css';
 
 body {
   background-color: var(--bg-color-normal);
